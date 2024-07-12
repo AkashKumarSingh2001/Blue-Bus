@@ -1,0 +1,15 @@
+<h1>Buses</h1>
+
+<div id="buses">
+  <% @buses.each do |bus| %>
+    <%= render "bus_owner/buses/bus" ,bus:bus %>
+    <p>
+      <%= link_to "Show this bus", bus_path(bus) %>
+    </p>
+  <% end %>
+</div>
+<%= turbo_frame_tag "form" do %>
+  <% if current_user.present? && current_user.user_type == "busowner"%>
+    <%= link_to "New bus", new_bus_owner_bus_path ,class:"btn btn-success"  %>
+  <% end %>
+<% end %>
